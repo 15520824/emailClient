@@ -1,8 +1,10 @@
 <?php
     use PHPMailer\PHPMailer\PHPMailer;
+    $emailSend = "15520824@tienphongnam.vn";
+    $password = "hokbit1A";
+    $name = 'SoftAView';
 
     if (isset($_POST['name']) && isset($_POST['email'])) {
-        $name = $_POST['name'];
         $email = $_POST['email'];
         $subject = $_POST['subject'];
         $body = $_POST['body'];
@@ -14,18 +16,19 @@
         $mail = new PHPMailer();
 
         //SMTP Settings
+        $mail->CharSet = 'UTF-8';
         $mail->isSMTP();
-        $mail->Host = "smtp.gmail.com";
+        $mail->Host = "mail.50webs.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "YOUR-EMAIL-ADDRESS";
-        $mail->Password = 'YOUR-PASSWORD';
+        $mail->Username = $emailSend;
+        $mail->Password =  $password;
         $mail->Port = 465; //587
         $mail->SMTPSecure = "ssl"; //tls
 
         //Email Settings
         $mail->isHTML(true);
-        $mail->setFrom($email, $name);
-        $mail->addAddress("YOUR-EMAIL-ADDRESS");
+        $mail->setFrom($emailSend, $name);
+        $mail->addAddress($email);
         $mail->Subject = $subject;
         $mail->Body = $body;
 
